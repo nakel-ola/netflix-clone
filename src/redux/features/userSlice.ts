@@ -1,28 +1,25 @@
-import window from 'global';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-let key = 'wujo_login_profile';
-
+let key = "wujo_login_profile";
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
     user: null,
   },
   reducers: {
-    login: (state,action) => {
+    login: (state, action) => {
       window.localStorage.setItem(key, JSON.stringify(action.payload));
       state.user = action.payload;
     },
     logout: (state) => {
-      window.localStorage.clear(key);
+      window.localStorage.clear();
       state.user = null;
     },
   },
 });
 
-export const { login,logout } = userSlice.actions;
-
+export const { login, logout } = userSlice.actions;
 
 export const selectUser = (state: any) => state.user.user;
 

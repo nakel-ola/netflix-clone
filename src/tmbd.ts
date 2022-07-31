@@ -1,9 +1,4 @@
-// export const config = {
-//   API_KEY: "57186edf75b1e0e4312c8aa3ad4c6271",
-//   BASE_URL: "https://api.themoviedb.org/3/",
-//   BASE_URL_CATEGORY: "https://api.themoviedb.org/",
-//   IMAGE_URL: "https://image.tmdb.org/t/p/w1280",
-// };
+import axios from 'axios';
 
 export const config = {
   API_KEY: `${process.env.API_KEY}`,
@@ -36,11 +31,12 @@ export const genres = [
 export async function getPopularMovies(type: string) {
   let data = [];
   try {
-    const response = await fetch(
-      `${config.BASE_URL}${type}/popular?api_key=${config.API_KEY}&language=en-US`
-    );
-    const responseData = await response.json();
-    data = responseData?.results;
+
+    let url = `${config.BASE_URL}${type}/popular?api_key=${config.API_KEY}&language=en-US`;
+
+    const response = await axios.get(url)
+    const responseData = await response.data.results;
+    data = responseData;
   } catch (error) {}
   return data;
 }
@@ -48,10 +44,10 @@ export async function getPopularMovies(type: string) {
 export async function getMoviesList() {
   let data: any[] = [];
   try {
-    const response = await fetch(
-      `${config.BASE_URL}genre/movie/list?api_key=${config.API_KEY}`
-    );
-    const responseData = await response.json();
+
+    var url = `${config.BASE_URL}genre/movie/list?api_key=${config.API_KEY}`;
+    const response = await axios.get(url);
+    const responseData = await response.data;
     data = responseData.genres.map((data: any) => ({ ...data, type: "movie" }));
   } catch (error) {}
   return data;
@@ -59,11 +55,11 @@ export async function getMoviesList() {
 export async function getSeriesList() {
   let data = [];
   try {
-    const response = await fetch(
-      `${config.BASE_URL}genre/tv/list?api_key=${config.API_KEY}`
-    );
+    const url = `${config.BASE_URL}genre/tv/list?api_key=${config.API_KEY}`
 
-    const responseData = await response.json();
+    const response = await axios.get(url);
+
+    const responseData = await response.data;
     data = responseData.genres.map((data: any) => ({ ...data, type: "tv" }));
   } catch (error) {}
   return data;
@@ -91,10 +87,10 @@ function shuffle(array: any[]) {
 export async function getMoviesBycategory(id: number, type: string) {
   let data = [];
   try {
-    const response = await fetch(
-      `${config.BASE_URL}discover/${type}?api_key=${config.API_KEY}&with_genres=${id}`
-    );
-    var responseData = await response.json();
+    const url = `${config.BASE_URL}discover/${type}?api_key=${config.API_KEY}&with_genres=${id}`
+
+    const response = await axios.get(url);
+    var responseData = await response.data;
     data = shuffle(responseData?.results);
   } catch (error) {}
   return data;
@@ -135,10 +131,10 @@ export const getRandomData = async () => {
 export async function getCast(id: number) {
   let data = [];
   try {
-    const response = await fetch(
-      `${config.BASE_URL}movie/${id}/credits?api_key=${config.API_KEY}`
-    );
-    var responseData = await response.json();
+    const url = `${config.BASE_URL}movie/${id}/credits?api_key=${config.API_KEY}`
+
+    const response = await axios.get(url);
+    var responseData = await response.data;
     data = responseData;
   } catch (error) {}
   return data;
@@ -149,10 +145,10 @@ export async function getCast(id: number) {
 export async function getSimilarMovies(id: number) {
   let data = [];
   try {
-    const response = await fetch(
-      `${config.BASE_URL}/movie/${id}/similar?api_key=${config.API_KEY}`
-    );
-    var responseData = await response.json();
+    const url = `${config.BASE_URL}/movie/${id}/similar?api_key=${config.API_KEY}`
+
+    const response = await axios.get(url);
+    var responseData = await response.data;
     data = responseData.results;
   } catch (error) {}
   return data;

@@ -191,7 +191,7 @@ const Header = ({}: { show?: boolean }) => {
             <div className="flex items-center px-[8px]">
               <div className="w-[35px] h-[35px] rounded-full overflow-hidden shrink-0">
                 <img
-                  src={user.photoURL}
+                  src={user.photoURL ?? 'https://ih1.redbubble.net/image.618427277.3222/flat,800x800,075,f.u2.jpg'}
                   alt=""
                   className="w-full h-full object-cover"
                 />
