@@ -17,7 +17,7 @@ interface RefDivElement {
 } 
 
 
-const Cards = ({ name, id,type }: { id: number; name: string,type: string }) => {
+const Cards = ({ name, id,type }: { id: number, name: string,type: string }) => {
   const [data, setData] = useState<Movie[]>([]);
   const [show, setShow] = useState<Movies>({ open: false});
   const [toggle, setToggle] = useState<boolean>(false);

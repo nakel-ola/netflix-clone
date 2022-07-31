@@ -4,22 +4,17 @@ import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Cards from "../components/Cards";
 import Header from "../components/Header";
-import { getRandomData } from "../tmbd";
+import {  getRandomData } from "../tmbd";
 
 const num = Math.floor(Math.random() * 2);
 
-const Home: NextPage = () => {
-  const [data, setData] = useState<any[]>([]);
+interface Data {
+  id: number;
+  name: string;
+  type: string;
+}
 
-  const fetchData = async () => {
-    const res = await getRandomData();
-    setData(res);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const Home = ({ data }: { data: Data[]}) => {
   return (
     <div className="">
       <Head>
@@ -38,3 +33,12 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const res = await getRandomData();
+  return {
+    props: {
+      data: res,
+    },
+  };
+}

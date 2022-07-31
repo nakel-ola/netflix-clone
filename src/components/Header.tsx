@@ -40,7 +40,7 @@ const Header = ({}: { show?: boolean }) => {
       signOut(auth)
         .then(() => {
           dispatch(logout());
-          router.push("/");
+          router.replace("/");
         })
         .catch((error) => {
           console.error(error);
@@ -57,7 +57,6 @@ const Header = ({}: { show?: boolean }) => {
         displayName: user.displayName,
       })
     );
-    router.replace("/home");
   };
 
   const items = [
@@ -191,7 +190,7 @@ const Header = ({}: { show?: boolean }) => {
             <div className="flex items-center px-[8px]">
               <div className="w-[35px] h-[35px] rounded-full overflow-hidden shrink-0">
                 <img
-                  src={user.photoURL ?? 'https://ih1.redbubble.net/image.618427277.3222/flat,800x800,075,f.u2.jpg'}
+                  src={`https://ui-avatars.com/api/?name=${user.displayName}`}
                   alt=""
                   className="w-full h-full object-cover"
                 />
