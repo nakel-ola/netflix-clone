@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDElty3xGwJJ_NDa9kUfWKNGy1beyxPSpE",
-  authDomain: "netflix-clone-nextjs-3e2cd.firebaseapp.com",
-  projectId: "netflix-clone-nextjs-3e2cd",
-  storageBucket: "netflix-clone-nextjs-3e2cd.appspot.com",
-  messagingSenderId: "454289634102",
-  appId: "1:454289634102:web:f9d2b3489d1a0db94d7997",
-  measurementId: "G-M6EB0KSDR5",
+  apiKey: `${process.env.FIRSBASE_URL}`,
+  authDomain: `${process.env.AUTHDOMAIN}`,
+  projectId: `${process.env.PROJECTID}`,
+  storageBucket: `${process.env.STORAGEBUCKET}`,
+  messagingSenderId: `${process.env.MESSAGINGSENDERID}`,
+  appId: `${process.env.APPID}`,
+  measurementId: `${process.env.MEASUREMENTID}`,
 };
 
 const app = initializeApp(firebaseConfig);
